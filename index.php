@@ -9,18 +9,7 @@
 	if (!empty($method) || !empty($lines)) {
 		cast($method, $lines);
 	} else {
-		home();
-	}
-
-	function home() {
-		echo '
-			<h1>Welcome to the iChing API 0.1.0</h1>
-			<h3>/hexagram?cast=threecoin&lines=997867</h3>
-			<ul>
-				<li><pre>?lines=997876</pre>Get hexagram (6,7,8,9 notation))</li>
-				<li><pre>?cast=yarrow</pre>Get hexagram Method (threecoin|yarrow)</li>
-			</ul>
-		';
+		return readfile('./README.md');
 	}
 
 	function cast($method, $lines) {

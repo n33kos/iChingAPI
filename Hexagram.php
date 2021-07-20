@@ -17,6 +17,7 @@ class Hexagram {
 	public $description;
 	public $descriptionJudgement;
 	public $descriptionImage;
+	public $descriptionLines;
 
 	function __construct($hexagram_value){
 		//$hexagram_value uses 6,7,8,9 notation
@@ -54,10 +55,13 @@ class Hexagram {
 
 		$lines = $conn->queryAll('SELECT * FROM changing_lines WHERE hexagram_id=' . $result['id'] . ' AND line_position IN (' . $changingPositions . ');');
 		$linesStrings = [];
+		$linesDescriptionStrings = [];
 		foreach ($lines as $key => $value) {
 			array_push($linesStrings, $value['text']);
+			array_push($linesDescriptionStrings, $value['description']);
 		}
 		$linesString = implode("\n\n", $linesStrings);
+		$linesDescriptionStrings = implode("\n\n", $linesDescriptionStrings);
 
 		$this->numbers = $hexagram_value;
 		$this->upperTrigram = $result['upper_trigram'];
@@ -72,6 +76,7 @@ class Hexagram {
 		$this->description = $result['description'];
 		$this->descriptionJudgement = $result['description_judgement'];
 		$this->descriptionImage = $result['description_image'];
+		$this->descriptionLines = $linesDescriptionStrings;
 
 		return $this;
 	}
