@@ -20,10 +20,14 @@ class Hexagram {
 	public $descriptionLines;
 
 	function __construct($hexagram_value){
-		//$hexagram_value uses 6,7,8,9 notation
-		//"668976"
+		// $hexagram_value uses 6,7,8,9 notation
+		// "668976"
+		// 6 = old yin
+		// 7 = young yang
+		// 8 = young yin
+		// 9 = old yang
 
-    $this->normalizedAges = "";
+    	$this->normalizedAges = "";
 		for ($i = 0; $i < strlen($hexagram_value); $i++) {
 			if($hexagram_value[$i] == "6" || $hexagram_value[$i] == "9"){
 				$this->normalizedAges .= "1";
@@ -34,7 +38,7 @@ class Hexagram {
 
 		$this->normalizedLines = "";
 		for ($i = 0; $i < strlen($hexagram_value); $i++) {
-			if($hexagram_value[$i] == "6" || $hexagram_value[$i] == "7"){
+			if($hexagram_value[$i] == "6" || $hexagram_value[$i] == "8"){
 				$this->normalizedLines .= "0";
 			}else{
 				$this->normalizedLines .= "1";
